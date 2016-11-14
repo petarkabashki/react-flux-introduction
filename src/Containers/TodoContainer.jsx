@@ -3,12 +3,19 @@ import AddTodo from '../Components/AddTodo';
 import TodoList from '../Components/TodoList';
 
 class TodoContainer extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      todos: [
+        'buy milk',
+        'walk the cat'
+      ]
+    }
+  }
 
   render(){
-    const todos = [
-      'buy milk',
-      'walk the cat'
-    ];
+    const {todos} = this.state;
     return (
       <div>
         <AddTodo/>
