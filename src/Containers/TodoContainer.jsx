@@ -7,11 +7,19 @@ class TodoContainer extends React.Component {
     super(props);
 
     this.state = {
-      todos: [
-        'buy milk',
-        'walk the cat'
-      ]
+      todos: []
     }
+  }
+
+  componentDidMount() {
+    setTimeout(function(){
+      this.setState({
+        todos: [
+          'buy milk',
+          'walk the cat'
+        ]
+      })
+    }.bind(this), 2000)
   }
 
   render(){
