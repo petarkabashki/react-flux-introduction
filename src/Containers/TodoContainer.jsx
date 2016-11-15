@@ -22,11 +22,19 @@ class TodoContainer extends React.Component {
     }.bind(this), 2000)
   }
 
+  addTodo(newTodo) {
+    const todos = this.state.todos;
+
+    this.setState({
+      todos: [...todos, newTodo]
+    })
+  }
+
   render(){
     const {todos} = this.state;
     return (
       <div>
-        <AddTodo/>
+        <AddTodo onAdd={this.addTodo.bind(this)} />
         <TodoList todos={todos}/>
       </div>
     )
