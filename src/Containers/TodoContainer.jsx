@@ -3,7 +3,9 @@ import AddTodo from '../Components/AddTodo';
 import TodoList from '../Components/TodoList';
 
 import TodoStore from '../flux-infra/TodoStore';
-import {Container} from 'flux/utils';
+import {Container as FluxStoreWrapper} from 'flux/utils';
+
+import {dispatch} from '../flux-infra/TodoDispatcher';
 
 class TodoContainer extends React.Component {
 
@@ -18,11 +20,7 @@ class TodoContainer extends React.Component {
     }
 
   addTodo(newTodo) {
-    const todos = this.state.todos;
-
-    this.setState({
-      todos: [...todos, newTodo]
-    })
+      dispatch({type: 'todo/create', text: newTodo})
   }
 
   render(){
@@ -31,10 +29,10 @@ class TodoContainer extends React.Component {
     return (
       <div>
         <AddTodo onAdd={this.addTodo.bind(this)} />
-        <TodoList todos={todos}/>
+        <TodoList todos={todos} />
       </div>
     )
   }
 }
 
-export default Container.create(TodoContainer);
+export default FluxStoreWrapper.create(TodoContainer);
