@@ -2,25 +2,20 @@ import React from 'react'
 import AddTodo from '../Components/AddTodo';
 import TodoList from '../Components/TodoList';
 
+import TodoStore from '../flux-infra/TodoStore';
+import {Container} from 'flux/utils';
+
 class TodoContainer extends React.Component {
-  constructor(props){
-    super(props);
 
-    this.state = {
-      todos: []
+    static getStores(){
+        return [TodoStore];
     }
-  }
 
-  componentDidMount() {
-    setTimeout(function(){
-      this.setState({
-        todos: [
-          'buy milk',
-          'walk the cat'
-        ]
-      })
-    }.bind(this), 2000)
-  }
+    static calculateState(prevState) {
+        return {
+            todos: TodoStore.getState()
+        };
+    }
 
   addTodo(newTodo) {
     const todos = this.state.todos;
@@ -32,6 +27,7 @@ class TodoContainer extends React.Component {
 
   render(){
     const {todos} = this.state;
+
     return (
       <div>
         <AddTodo onAdd={this.addTodo.bind(this)} />
@@ -40,4 +36,5 @@ class TodoContainer extends React.Component {
     )
   }
 }
-export default TodoContainer;
+
+export default Container.create(TodoContainer);

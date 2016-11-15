@@ -12,18 +12,15 @@ class AddTodo extends React.Component{
     }
     changeNewTodo(evt){
         this.setState({newTodo: evt.target.value})
-        console.log(this.state.newTodo);
-        //const that = this;
-        //setTimeout(() => console.log(that.state.newTodo));
     }
     render(){
         const {onAdd} = this.props;
-        const {newTodo} = this.state;
+
         return (
             <div>
-                <input type='text' placeholder='Add todo' value={newTodo} onChange={this.changeNewTodo}/>
+                <input type='text' placeholder='Add todo' value={this.state.newTodo} onChange={this.changeNewTodo}/>
                 <button onClick={() => {
-                    onAdd(newTodo);
+                    onAdd(this.state.newTodo);
                     this.setState({newTodo: ''});
                 }}>Add</button>
             </div>
