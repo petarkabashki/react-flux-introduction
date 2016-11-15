@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import TodoContainer from './Containers/TodoContainer';
+import Dispatcher from './flux-infra/TodoDispatcher'
+import { dispatch } from './flux-infra/TodoDispatcher'
+import timer from './middleware/timer';
+
+Dispatcher.register(timer(dispatch))
 
 class App extends Component {
 
@@ -21,4 +26,3 @@ class App extends Component {
 }
 
 export default App;
-
