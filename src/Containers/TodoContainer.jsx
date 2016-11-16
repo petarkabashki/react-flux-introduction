@@ -22,6 +22,9 @@ class TodoContainer extends React.Component {
   addTodo(newTodo) {
       dispatch({type: 'todo/create', text: newTodo})
   }
+  deleteTodo(index){
+        dispatch({type:'todo/delete',index :index});
+  }
 
   render(){
     const {todos} = this.state;
@@ -29,7 +32,7 @@ class TodoContainer extends React.Component {
     return (
       <div>
         <AddTodo onAdd={this.addTodo.bind(this)} />
-        <TodoList todos={todos} />
+        <TodoList todos={todos} deleteTodo={this.deleteTodo} />
       </div>
     )
   }

@@ -2,6 +2,7 @@ import React from 'react'
 
 const TodoList  = (props) => {
   const {todos} = props;
+  const {deleteTodo} =props;
 
   if (todos.length === 0) {
     return <p>No todos</p>
@@ -9,7 +10,9 @@ const TodoList  = (props) => {
 
   return (
     <ul>
-      {todos.map((item, index) => <li key={item + index}>{item}</li>)}
+        {todos.map((item, index) => <li key={item + index}>{item} <span onClick={() => {
+            deleteTodo(index);
+        }}> X</span></li>)}
     </ul>
   )
 }

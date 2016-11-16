@@ -9,7 +9,7 @@ export const reduce = (state, action) => {
       return [...state, action.text];
 
       case 'todo/delete':
-          return state.filter((item,index)=>index!=action.index);
+          return state.filter((item,index)=>index!==action.index);
 
     default:
       return state;
