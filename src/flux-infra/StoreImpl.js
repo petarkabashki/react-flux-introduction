@@ -8,6 +8,9 @@ export const reduce = (state, action) => {
       case 'todo/create':
       return [...state, action.text];
 
+      case 'todo/delete':
+          return state.filter((item,index)=>index!=action.index);
+
     default:
       return state;
   }
