@@ -1,22 +1,14 @@
 import {ReduceStore} from 'flux/utils';
 import TodoDispatcher from './TodoDispatcher';
+import {getInitialState, reduce} from './StoreImpl';
 
-class TodoStore extends ReduceStore {
-  getInitialState() {
-    return [
-        'Shave',
-        'Have coffee'
-    ];
+export class TodoStore extends ReduceStore {
+  getInitialState(){
+      return getInitialState();
   }
 
   reduce (state, action) {
-    switch (action.type) {
-        case 'todo/create':
-        return [...state, action.text];
-
-      default:
-        return state;
-    }
+    return reduce(state, action)
   }
 }
 
