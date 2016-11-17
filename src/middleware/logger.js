@@ -1,1 +1,1 @@
-export default () => action => console.log(action)
+export default () => action => console.log(action.type, action)
