@@ -1,14 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import TodoContainer from './Containers/TodoContainer';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import TodoContainer from './Containers/TodoContainer'
 import Dispatcher from './flux-infra/TodoDispatcher'
 import { dispatch } from './flux-infra/TodoDispatcher'
-import timer from './middleware/timer';
+import middleware from './middleware'
 
-Dispatcher.register(timer(dispatch))
+
+// Init middleware list
+middleware.forEach(mw => Dispatcher.register(mw(dispatch)))
 
 class App extends Component {
+
+    componentDidMount() {
+      dispatch({type: 'todos/fetch'})
+    }
 
     render() {
         return (
@@ -21,8 +27,8 @@ class App extends Component {
             </p>
             <TodoContainer />
           </div>
-        );
+        )
   }
 }
 
-export default App;
+export default App
