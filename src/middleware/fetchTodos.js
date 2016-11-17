@@ -16,7 +16,6 @@ export default dispatch => action => {
 
       .catch(err => {
           dispatch({ type: 'todos/fetch/error', err })
-          throw err;
       })
 
   }

@@ -3,33 +3,30 @@ import fetchTodos from '../fetchTodos'
 
 describe('fetchTodos', () => {
 
-  const mockedFetch = () => Promise.resolve([{title: 'bla'}])
-  const mockedDispatch = () => {}
+    it('should dispatch todos/fetch/error action when fetch fails', (done) => {
 
-  beforeEach(() => {
-    global.fetch = (url) => (new Promise((res, rej) => {
-      setTimeout(() => {
-          rej('bam');
-          console.error('bam')
-      }, 500)
-    }))
-    // fetchTodos.__set__('fetch', mockedFetch);
-    // fetchTodos.__set__('fetch', mockedFetch)
-  })
+      global.fetch = (url) => Promise.reject()
 
-  it('fetch if action is todos/fetch', (done) => {
-
-      // const mockedFetch = (url) => {
-      //   expect(url).toEqual('https://jsonplaceholder.typicode.com/todos')
-      //   done()
-      // }
+      const mockedDispatch = action => {
+          expect(action.type).toEqual('todos/fetch/error')
+          done()
+      }
 
       fetchTodos(mockedDispatch)({type: 'todos/fetch'})
-          .catch((err) => {
-              console.error('bas')
-              done(err)
-          })
-          .then(() => done())
 
-  })
+    })
+
+    it('should dispatch todos/update action when fetch succeeds', (done) => {
+
+        global.fetch = (url) => Promise.resolve({json : () => []})
+
+        const mockedDispatch = action => {
+            expect(action.type).toEqual('todos/update')
+            done()
+        }
+
+        fetchTodos(mockedDispatch)({type: 'todos/fetch'})
+
+    })
+
 })
