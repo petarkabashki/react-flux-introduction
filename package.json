@@ -11,6 +11,7 @@
     "babel-preset-react-app": "^1.0.0",
     "case-sensitive-paths-webpack-plugin": "1.1.4",
     "chalk": "1.1.3",
+    "chimp": "^0.41.2",
     "connect-history-api-fallback": "1.3.0",
     "core-js": "^2.4.1",
     "cross-spawn": "4.0.2",
@@ -70,7 +71,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "NODE_ENV=development node_modules/karma/bin/karma start karma.config.js",
-    "test:comps": "NODE_ENV=development node_modules/karma/bin/karma start karma-enzyme.config.js"
+    "test:comps": "NODE_ENV=development node_modules/karma/bin/karma start karma-enzyme.config.js",
+    "test:e2e": "./node_modules/.bin/chimp --path ./e2e/features/"
   },
   "jest": {
     "moduleFileExtensions": [
