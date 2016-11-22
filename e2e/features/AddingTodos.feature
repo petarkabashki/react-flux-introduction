@@ -10,4 +10,4 @@ Scenario: Adding todos
     And I click the add button
     And I enter task 'buy a rubber band machine gun'
     And I click the add button
-    Then I see both tasks in the list
+    Then I see both 'buy chewing gum' and 'buy a rubber band machine gun' tasks in the list

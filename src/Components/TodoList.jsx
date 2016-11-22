@@ -10,7 +10,7 @@ const TodoList  = (props) => {
 
   return (
     <ul>
-        {todos.map((item, index) => <li key={item + index}>{item} <button onClick={() => {
+        {todos.map((item, index) => <li key={item + index}><span>{item}</span> <button onClick={() => {
             deleteTodo(index);
         }}> X</button></li>)}
     </ul>
